@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Checkout Success - E-Commerce{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4">
+    <h1 class="text-3xl font-bold mb-8 text-center">Thank You for Your Order!</h1>
+    
+    <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+        <h2 class="text-lg font-semibold mb-4">Order Summary</h2>
+        <p>Your order has been placed successfully. Here are your order details:</p>
+        
+        <div class="mt-4">
+            <p><strong>Order ID:</strong> {{ order.id }}</p>
+            <p><strong>Order Date:</strong> {{ order.created_at|date:"F j, Y" }}</p>
+            <p><strong>Total Amount:</strong> ${{ order.get_total_amount }}</p>
+        </div>
+
+        <h3 class="text-md font-semibold mt-6 mb-2">Items Ordered:</h3>
+        <ul class="list-disc list-inside">
+            {% for item in order.orderitem_set.all %}
+                <li>{{ item.quantity }} x {{ item.product.name }} - ${{ item.product.price }} each</li>
+            {% endfor %}
+        </ul>
+    </div>
+    
+    <div class="text-center">
+        <a href="{% url 'product_list' %}" class="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 transition">Continue Shopping</a>
+    </div>
+</div>
+{% endblock %}
