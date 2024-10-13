@@ -74,9 +74,10 @@ def checkout(request):
         return redirect('cart_detail')
     
     order = Order.objects.create(user=request.user)
+    total_order_price = 0
     
     for item in cart_items:
-        OrderItem.objects.create(
+        order_item = OrderItem.objects.create(
             order=order,
             product=item.product,
             quantity=item.quantity
