@@ -75,6 +75,7 @@ def checkout(request):
     
     order = Order.objects.create(user=request.user)
     total_order_price = 0
+    order_items = []
     
     for item in cart_items:
         order_item = OrderItem.objects.create(
