@@ -18,7 +18,7 @@
 
         <h3 class="text-md font-semibold mt-6 mb-2">Items Ordered:</h3>
         <ul class="list-disc list-inside">
-            {% for item in order.orderitem_set.all %}
+            {% for item in order_item%}
                 <li>{{ item.quantity }} x {{ item.product.name }} - ${{ item.product.price }} each</li>
             {% endfor %}
         </ul>
