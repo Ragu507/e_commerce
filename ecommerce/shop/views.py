@@ -84,10 +84,11 @@ def checkout(request):
             quantity=item.quantity
         )
         total_order_price += order_item.get_total_price()
+        order_items.append(order_item) 
     
     cart.items.all().delete()
     
-    return render(request, 'shop/checkout_success.html', {'order': order,'total_order_price':total_order_price,'order_item':order_item})
+    return render(request, 'shop/checkout_success.html', {'order': order,'total_order_price':total_order_price,'order_items':order_items})
 
 @login_required(login_url='login')
 def order_history(request):
