@@ -13,13 +13,13 @@
         <div class="mt-4">
             <p><strong>Order ID:</strong> {{ order.id }}</p>
             <p><strong>Order Date:</strong> {{ order.created_at|date:"F j, Y" }}</p>
-            <p><strong>Total Amount:</strong> Rs. {{ total_order_price}}</p>
+            <p><strong>Total Amount:</strong> Rs. {{ total_order_price }}</p>
         </div>
 
         <h3 class="text-md font-semibold mt-6 mb-2">Items Ordered:</h3>
         <ul class="list-disc list-inside">
-            {% for item in order_item%}
-                <li>{{ item.quantity }} x {{ item.product.name }} - ${{ item.product.price }} each</li>
+            {% for item in order_items %}
+                <li>{{ item.quantity }} x {{ item.product.name }} - Rs. {{ item.product.price }} each</li>
             {% endfor %}
         </ul>
     </div>
