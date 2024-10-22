@@ -53,15 +53,18 @@ def cart_detail(request):
     return render(request, 'shop/cart_detail.html', {'cart_items': cart_items})
 
 @login_required(login_url='login')
-def update_cart_item_quantity(request, product_id, quantity):
+def update_cart_item_quantity(request, product_id):
     cart = Cart.objects.get(user=request.user)
     cart_item = get_object_or_404(CartItem, cart=cart, product_id=product_id)
     
-    if quantity > 0:
-        cart_item.quantity = quantity
-        cart_item.save()
-    else:
-        cart_item.delete()  
+    if request.method == 'POST':
+        quantity = int(request.POST.get('quantity'))  # Get the quantity from form data
+
+        if quantity > 0:
+            cart_item.quantity = quantity
+            cart_item.save()
+        else:
+            cart_item.delete()  # Delete the item if quantity is 0 or less
     
     return redirect('cart_detail')
 
