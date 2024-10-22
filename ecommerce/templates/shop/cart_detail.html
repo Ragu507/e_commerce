@@ -35,7 +35,7 @@
                         </div>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap">
-                        <form action="{% url 'update_cart_item_quantity' item.product.id item.quantity %}" method="POST" class="flex items-center">
+                        <form action="{% url 'update_cart_item_quantity' item.product.id %}" method="POST" class="flex items-center">
                             {% csrf_token %}
                             <input type="number" name="quantity" value="{{ item.quantity }}" min="1" class="border rounded-lg w-16 text-center">
                             <button type="submit" class="ml-2 bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-700 transition">Update</button>
